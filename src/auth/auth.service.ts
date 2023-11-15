@@ -1,6 +1,7 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable ,Req} from "@nestjs/common";
 import { User,BookMark } from "@prisma/client";
 import { PrismaService } from "src/prisma/prisma.service";
+import { Request } from 'express';
 
 @Injectable({})
 export class AuthService{
@@ -10,7 +11,9 @@ export class AuthService{
         return {msg:'iam signin service'};
       }
 
-    signup() {
-        return {msg:'iam signup service'};
+    signup(@Req() req:Request) {
+        console.log(req.body);
+        
+        return {msg:`iam signup service ${req.body}`};
        }
 }
