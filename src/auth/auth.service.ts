@@ -3,7 +3,7 @@ import { User,BookMark } from "@prisma/client";
 import { PrismaService } from "src/prisma/prisma.service";
 import { Request } from 'express';
 
-@Injectable({})
+@Injectable()
 export class AuthService{
     constructor(private prisma:PrismaService){}
 
