@@ -5,10 +5,10 @@ import { Request } from 'express';
 import { AuthDto } from "./dto/auth.dto";
 import * as argon from 'argon2'
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
-
+import {JwtService} from '@nestjs/jwt'
 @Injectable()
 export class AuthService {
-  constructor(private prisma: PrismaService) { }
+  constructor(private prisma: PrismaService,private jwt:JwtService) { }
 
   async signup(dto: AuthDto) {
     //generate password
