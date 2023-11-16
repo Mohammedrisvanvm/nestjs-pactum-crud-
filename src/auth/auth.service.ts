@@ -19,6 +19,7 @@ export class AuthService {
         password: hash
       }
     })
+    delete user.password
     return user
     return { msg: `iam signup service ${dto}` };
   }
