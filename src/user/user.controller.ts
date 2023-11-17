@@ -16,7 +16,7 @@ import { UserService } from './user.service';
 
 @Controller('users')
 export class UserController {
-constructor(private userService:UserService){}
+  constructor(private userService: UserService) {}
 
   // GET /users/me
   @UseGuards(jwtGuard)
@@ -26,11 +26,15 @@ constructor(private userService:UserService){}
   }
 
   // PATCH /users/edit
-  @Patch()
+  @Patch('edit')
+  @UseGuards(jwtGuard)
   editUser(
-    @GetUser('id') userId: number,
+    @GetUser() user: User,
     @Body() dto: editUserDto,
   ) {
-    return this.userService.editUser(userId,dto)
+    return this.userService.editUser(
+      user.id,
+      dto,
+    );
   }
 }
