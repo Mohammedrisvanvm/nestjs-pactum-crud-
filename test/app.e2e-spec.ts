@@ -47,31 +47,27 @@ describe('app e2e', () => {
           .spec()
           .post('/auth/signup')
           .withBody({ password: dto.password })
-          .expectStatus(400)
-          .inspect();
+          .expectStatus(400);
       });
       it('should throw if password empty', () => {
         return pactum
           .spec()
           .post('/auth/signup')
-          .expectStatus(400)
-          .inspect();
+          .expectStatus(400);
       });
       it('should throw if no dto', () => {
         return pactum
           .spec()
           .post('/auth/signup')
           .withBody({ email: dto.email })
-          .expectStatus(400)
-          .inspect();
+          .expectStatus(400);
       });
       it('should signup', () => {
         return pactum
           .spec()
           .post('/auth/signup')
           .withBody(dto)
-          .expectStatus(201)
-          .inspect();
+          .expectStatus(201);
       });
     });
     describe('Signin', () => {
@@ -80,23 +76,20 @@ describe('app e2e', () => {
           .spec()
           .post('/auth/signin')
           .withBody({ password: dto.password })
-          .expectStatus(400)
-          .inspect();
+          .expectStatus(400);
       });
       it('should throw if password empty', () => {
         return pactum
           .spec()
           .post('/auth/signin')
-          .expectStatus(400)
-          .inspect();
+          .expectStatus(400);
       });
       it('should throw if no dto', () => {
         return pactum
           .spec()
           .post('/auth/signin')
           .withBody({ email: dto.email })
-          .expectStatus(400)
-          .inspect();
+          .expectStatus(400);
       });
       it('should signin', () => {
         return pactum
@@ -104,7 +97,6 @@ describe('app e2e', () => {
           .post('/auth/signin')
           .withBody(dto)
           .expectStatus(200)
-          .inspect()
           .stores('userAcctkn', 'access_Token');
       });
     });
@@ -116,8 +108,7 @@ describe('app e2e', () => {
           .spec()
           .get('/users/me')
           .withBearerToken('$S{userAcctkn}')
-          .expectStatus(200)
-          .inspect();
+          .expectStatus(200);
       });
     });
     describe('Edit user', () => {
@@ -132,8 +123,10 @@ describe('app e2e', () => {
           .patch('/users/edit')
           .withBearerToken('$S{userAcctkn}')
           .withBody(dto)
-          .inspect()
-          .expectStatus(200);
+          .expectStatus(200)
+          .expectBodyContains(dto.email)
+          .expectBodyContains(dto.firstName)
+          .expectBodyContains(dto.lastName);
       });
     });
   });
