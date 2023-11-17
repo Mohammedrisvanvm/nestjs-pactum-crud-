@@ -4,15 +4,20 @@ import {
   UseGuards,
   Req,
   Patch,
+  Body,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { User } from '@prisma/client';
 import { Request } from 'express';
 import { GetUser } from './../auth/decorator/get-user.decorator';
 import { jwtGuard } from './../auth/guard/jwt.guard';
+import { editUserDto } from './dto/intex';
+import { UserService } from './user.service';
 
 @Controller('users')
 export class UserController {
+constructor(private userService:UserService){}
+
   // GET /users/me
   @UseGuards(jwtGuard)
   @Get('me')
@@ -22,5 +27,10 @@ export class UserController {
 
   // PATCH /users/edit
   @Patch()
-  editUser() {}
+  editUser(
+    @GetUser('id') userId: number,
+    @Body() dto: editUserDto,
+  ) {
+    return this.userService.editUser(userId,dto)
+  }
 }
