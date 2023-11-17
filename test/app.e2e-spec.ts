@@ -11,6 +11,7 @@ import {
 import { PrismaService } from '../src/prisma/prisma.service';
 import { AuthDto } from '../src/auth/dto/auth.dto';
 import { editUserDto } from '../src/user/dto/edit-user.dto';
+import { CreateBookmarkDto } from '../src/bookmark/dto/intex';
 
 describe('app e2e', () => {
   let app: INestApplication;
@@ -130,9 +131,43 @@ describe('app e2e', () => {
       });
     });
   });
-  describe('Bookmark', () => {
-    describe('Create bookmark', () => {});
-    describe('Get bookmark', () => {});
+  describe('Bookmarks', () => {
+    describe('Get empty bookmarks', () => {
+      it('should empty bookmarks', () => {
+        return pactum
+          .spec()
+          .get('/bookmarks')
+          .withBearerToken('$S{userAcctkn}')
+          .expectStatus(200)
+          .expectBody([]);
+      });
+    });
+    describe('Get bookmark', () => {
+      it('should get bookmarks', () => {
+        return pactum
+          .spec()
+          .get('/bookmarks')
+          .withBearerToken('$S{userAcctkn}')
+          .expectStatus(200)
+          .expectBody([]);
+      });
+    });
+    describe('Create bookmark', () => {
+      const dto: CreateBookmarkDto = {
+        title: 'first bookmark',
+        link: 'https://music.youtube.com/watch?v=lGGn4rNhZQ0&list=OLAK5uy_m2ke9Q7C44QYbUd5YG8TzvN4VF2375r3A',
+        description: 'youtube music',
+      };
+      it('should create bookmarks', () => {
+        return pactum
+          .spec()
+          .post('/bookmarks/create')
+          .withBearerToken('$S{userAcctkn}')
+          .expectBody(dto)
+          .expectStatus(201)
+          .inspect();
+      });
+    });
     describe('Get bookmark by id', () => {});
     describe('Edit bookmark by id', () => {});
     describe('Delete bookmark by id', () => {});
