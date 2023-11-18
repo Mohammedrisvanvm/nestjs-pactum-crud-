@@ -2,7 +2,6 @@ import {
   ForbiddenException,
   Injectable,
 } from '@nestjs/common';
-import { editUserDto } from 'src/user/dto/edit-user.dto';
 import { CreateBookmarkDto } from './dto/createBookmark.dto';
 import { EditBookmarkDto } from './dto/edit-bookmark.dto';
 import { PrismaService } from '../prisma/prisma.service';

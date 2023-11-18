@@ -1,14 +1,12 @@
 import {
   Controller,
   Post,
-  Req,
   Body,
   HttpCode,
   HttpStatus,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 
-import { Request } from 'express';
 import { AuthDto } from './dto/auth.dto';
 
 @Controller('auth')

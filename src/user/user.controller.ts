@@ -2,13 +2,10 @@ import {
   Controller,
   Get,
   UseGuards,
-  Req,
   Patch,
   Body,
 } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
 import { User } from '@prisma/client';
-import { Request } from 'express';
 import { GetUser } from './../auth/decorator/get-user.decorator';
 import { jwtGuard } from './../auth/guard/jwt.guard';
 import { editUserDto } from './dto/intex';
