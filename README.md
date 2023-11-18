@@ -29,33 +29,49 @@
 ## Installation
 
 ```bash
-$ yarn install
+$ npm install
 ```
+## db docker (postgres)
+```bash
+#start
+ npm run db:dev:up 
+#remove
+ npm run db:dev:rm   
+#restart
+ npm run db:dev:restart   
 
 ## Running the app
 
 ```bash
 # development
-$ yarn run start
+$ npm run start
 
 # watch mode
-$ yarn run start:dev
+$ npm run start:dev
 
 # production mode
-$ yarn run start:prod
+$ npm run start:prod
 ```
 
 ## Test
+# db docker (postgres) test
 
 ```bash
+#start
+ npm run db:test:up 
+#remove
+ npm run db:test:rm   
+#restart
+ npm run db:test:restart  
+```bash
 # unit tests
-$ yarn run test
+$ npm run test
 
 # e2e tests
-$ yarn run test:e2e
+$ npm run test:e2e
 
 # test coverage
-$ yarn run test:cov
+$ npm run test:cov
 ```
 
 ## Support
