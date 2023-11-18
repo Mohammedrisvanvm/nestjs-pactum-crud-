@@ -7,13 +7,13 @@ import {
 export class CreateBookmarkDto {
   @IsString()
   @IsNotEmpty()
-  title: String;
+  title: string;
 
   @IsString()
   @IsOptional()
-  description?: String;
+  description?: string;
 
   @IsString()
   @IsNotEmpty()
-  link: String;
+  link: string;
 }

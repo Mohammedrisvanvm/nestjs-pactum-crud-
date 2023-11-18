@@ -7,13 +7,13 @@ import {
 export class EditBookmarkDto {
   @IsString()
   @IsOptional()
-  title?: String;
+  title?: string;
 
   @IsString()
   @IsOptional()
-  description?: String;
+  description?: string;
 
   @IsString()
   @IsOptional()
-  link?: String;
+  link?: string;
 }
